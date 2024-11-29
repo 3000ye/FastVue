@@ -4,14 +4,6 @@ from starlette.middleware.cors import CORSMiddleware
 
 from core.config import settings
 from api.main import api_router
-# from db.db_core import init_db
-
-
-# async def lifespan(app: FastAPI):
-#     init_db()
-#
-#     yield  # 这里就是 FastAPI 应用在运行时
-#     pass
 
 
 def create() -> FastAPI:
@@ -29,8 +21,6 @@ def create() -> FastAPI:
     application.include_router(api_router, prefix="/api")
 
     return application
-
-
 
 
 # reload 模式
