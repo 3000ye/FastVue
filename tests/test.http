@@ -1,0 +1,4 @@
+GET localhost:3000/docs
+
+###
+GET localhost:3000/api/hello/hello
