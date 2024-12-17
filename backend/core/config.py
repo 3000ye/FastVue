@@ -11,6 +11,8 @@ class Settings(BaseSettings):
 
     BACKEND_PORT: int
     MYSQL_URL: str
+    SECRET_KEY: str
+    ALGORITHM: str
 
 
 settings = Settings()

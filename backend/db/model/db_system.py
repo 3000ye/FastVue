@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, TIMESTAMP, Integer, func
-from backend.db.model import Base
+from db.model import Base
 
 
 class SystemUser(Base):

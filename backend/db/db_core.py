@@ -1,9 +1,8 @@
-from cryptography.hazmat.backends.openssl import backend
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
-from backend.core.config import settings
-from backend.db.model import Base
+from core.config import settings
+from db.model import Base
 
 
 class DbSession:
