@@ -6,6 +6,10 @@ from db.schema.schema_system import AddUser, UpdateUser, DeleteUser, QueryUser
 
 
 def add_user(item: AddUser, db: Session):
+    """
+    新增用户，admin 使用，非注册入口
+    """
+
     if len(item.username) > 32 or len(item.password) > 32:
         raise HTTPException(status_code=500, detail='Username or Password must be less than 32 characters')
 
@@ -21,6 +25,10 @@ def add_user(item: AddUser, db: Session):
 
 
 def delete_user(item: DeleteUser, db: Session):
+    """
+    逻辑删除、注销用户
+    """
+
     q = db.query(SystemUser).filter(SystemUser.id == item.id)
     flag = q.first()
 
@@ -36,13 +44,22 @@ def delete_user(item: DeleteUser, db: Session):
 
 
 def query_by_username(username: str, db: Session) -> SystemUser:
-    """使用用户名查询用户，用于登录、权限校验"""
+    """
+    使用用户名查询用户，用于登录、权限校验
+    """
 
     user = db.query(SystemUser).filter(SystemUser.username == username).first()
-    return user
+    if user:
+        return user
+    else:
+        raise HTTPException(status_code=404, detail='User not found')
 
 
 def query_users(item: QueryUser, db: Session):
+    """
+    查询现有用户
+    """
+
     q = db.query(
         SystemUser.id, SystemUser.username, SystemUser.email, SystemUser.status
     )
@@ -58,6 +75,10 @@ def query_users(item: QueryUser, db: Session):
 
 
 def update_user(item: UpdateUser, db: Session):
+    """
+    更新用户信息
+    """
+
     q = db.query(SystemUser).filter(SystemUser.id == item.id)
     flag = q.first()
 
